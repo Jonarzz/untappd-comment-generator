@@ -195,6 +195,11 @@ document.getElementById('generate').onclick = () => {
   document.getElementById('output').value = result;
 };
 
+document.getElementById('clear').onclick = () => {
+  document.getElementById('input').value = '';
+  document.getElementById('output').value = '';
+};
+
 document.getElementById('copy').onclick = () => {
   document.getElementById('output')
           .select();

@@ -20,6 +20,8 @@ const NO_COMMA = {
   lek: "lekka",
   leko: "lekko",
   leps: "lepsze",
+  nis: "niska",
+  nisie: "niskie",
   mal: "mało",
   nad: "nadal",
   niewys: "niewysoka",
@@ -153,7 +155,7 @@ const WITH_COMMA = {
 document.getElementById('generate').onclick = () => {
   const input = document.getElementById('input').value;
   let result = input.split(' ').map(word => {
-    let stripped = word.replace(/,$/, '');
+    let stripped = word.toLowerCase().replace(/,$/, '');
     let withDot = false;
     if (word.endsWith('.')) {
       withDot = true;
@@ -179,9 +181,17 @@ document.getElementById('generate').onclick = () => {
   if (result.endsWith(',')) {
     result = result.slice(0, -1);
   }
+  for (let i = 0; i < result.length - 3; i++) {
+    if (result.charAt(i) === '.') {
+      result = result.slice(0, i + 2)
+               + result.charAt(i + 2).toUpperCase()
+               + result.slice(i + 3);
+    }
+  }
   if (!result.endsWith('.')) {
     result += '.';
   }
+
   document.getElementById('output').value = result;
 };
 
